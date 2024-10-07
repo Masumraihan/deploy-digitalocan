@@ -94,7 +94,84 @@ server{
 }
 ```
 
+#### Configure nginx with socket:
+1.create a file called socket.conf in conf.d folder
+
+then go to the files using editor like nano socket.conf 
+then write a config ex:
+
+```javascript
+server {
+    listen 80;
+    server_name socket.example.com www.socket.socket.com; //here your domain 
+
+    location / {
+        proxy_pass http://167.99.204.29:9001; //here your socket host and port
+        
+        # Add the following headers for WebSocket support
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        
+        # Add timeout settings for WebSocket connections
+        proxy_read_timeout 86400;
+        proxy_send_timeout 86400;
+    }
+}
+```
+
+then check and reload nginx 
+
+**Test Nginx Configuration:**
+   - To test the Nginx configuration for syntax errors:
+     ```bash
+     sudo nginx -t
+     ```
+ **Reload Nginx:**
+   - To reload Nginx without interrupting existing connections (useful for applying changes to the configuration):
+     ```bash
+      sudo systemctl reload nginx
+```
+
+
+#### Configure nginx with frontend and dashboard:
+
+1. config nginx in sites-available folder 
+like example.conf
+
+2. Create a Symbolic Link to sites-enabled:
+To enable this configuration, you need to create a symbolic link in the /etc/nginx/sites-enabled/ folder that points to your configuration in sites-available/.
+
+Run the following command to create the symlink:
+
+```bash
+sudo ln -s /etc/nginx/sites-available/example.conf /etc/nginx/sites-enabled/
+```
+
+3. Test the NGINX Configuration
+After adding the symlink, test if the NGINX configuration is correct by running:
+
+```bash
+sudo systemctl reload nginx
+
+```
+
+If the test passes, you should see something like:
+```bash
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
+4. Reload NGINX
+To apply the changes, reload NGINX with the following command:
+
+```bash
+sudo systemctl reload nginx
+```
 
 ## INSTALL AND CONFIGURE PM2
+
 
 follow their documentation to install and configure pm2 as well:https://pm2.keymetrics.io/
