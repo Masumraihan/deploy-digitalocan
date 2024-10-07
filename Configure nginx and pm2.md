@@ -133,9 +133,10 @@ then check and reload nginx
      ```
  **Reload Nginx:**
    - To reload Nginx without interrupting existing connections (useful for applying changes to the configuration):
-     ```bash
-      sudo systemctl reload nginx
-```
+
+  ```bash
+    sudo systemctl reload nginx
+  ```
 
 
 #### Configure nginx with frontend and dashboard:
