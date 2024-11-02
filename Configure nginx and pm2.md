@@ -76,20 +76,16 @@ This document provides essential commands for managing the Nginx web server. For
 then go to the files using editor like nano api.conf 
 then write a config ex:
 ```javascript
-server{
+server {
     listen 80;
-    server_name wach.quest;//use here your domain name to reverse the port
+    server_name dev-sampod.techcrafters.tech www.dev-sampod.techcrafters.tech; 
+
     location / {
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://159.223.184.53:1000;
         proxy_set_header Host $host;
-        proxy_pass http://127.0.0.1:3000;//use here backend host and port
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        # location /overview {
-        #     proxy_pass http://127.0.0.1:3000$request_uri;
-        #     proxy_redirect off;
-        # }
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
 ```
