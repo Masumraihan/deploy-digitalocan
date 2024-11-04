@@ -4,7 +4,7 @@
 #### Organize version
 Here are the steps with each one bolded:
 
-```markdown
+markdown
 **1. Check the MongoDB supported Linux version:**
 ```bash
 cat /etc/lsb-release
