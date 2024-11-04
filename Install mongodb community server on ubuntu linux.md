@@ -63,11 +63,41 @@ sudo systemctl enable mongod
 mongosh
 ```
 
-**13. Edit the MongoDB configuration file for authentication and IP configuration:**
+*** when you are userd in your project trnsictions then follow this commands
+
+**1. Edit the MongoDB configuration file for authentication and IP configuration:**
 ```bash
 sudo nano /etc/mongod.conf
 ```
 
+**2. past it after this "storage: dbPath: /var/lib/mongodb "
 
+```bash 
+replication:
+  replSetName: "rs0"
+```
+
+**3. After save then, start the MongoDB service:**
+```bash
+sudo systemctl start mongod.service
+```
+**4. Check MongoDB status:**
+```bash
+sudo systemctl status mongod
+```
+
+**5. then open mongosh
+```bash
+mongosh
+```
+
+**6. then pest this code 
+```
+rs.initiate()
+```
+**7. restart mongosh
+```bash
+sudo systemctl restart mongod
+```
 
 #### to check every path exist or not using ls command. ex: ls /etc/mongodb-conf
