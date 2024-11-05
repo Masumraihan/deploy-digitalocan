@@ -168,6 +168,15 @@ To apply the changes, reload NGINX with the following command:
 sudo systemctl reload nginx
 ```
 
+
+8. Set nginx bodysize   go to
+ ```bash
+   nano ../etc/nginx/nginx.conf
+```
+then set this code under http
+```
+client_max_body_size 500M;
+```
 ## INSTALL AND CONFIGURE PM2
 
 
