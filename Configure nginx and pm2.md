@@ -78,7 +78,7 @@ then write a config ex:
 ```javascript
 server {
     listen 80;
-    server_name dev-sampod.techcrafters.tech www.dev-sampod.techcrafters.tech; 
+    server_name example.com www.example.com; 
 
     location / {
         proxy_pass http://159.223.184.53:1000;
