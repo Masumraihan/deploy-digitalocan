@@ -1,7 +1,7 @@
 
 Here's a simple Markdown file specifically for setting up a free SSL certificate with Certbot for an Nginx web server:
 
-```markdown
+
 # Adding Free SSL with Certbot and Nginx
 
 This guide outlines the steps to install a free SSL certificate using Certbot and Let's Encrypt on an Nginx server.
